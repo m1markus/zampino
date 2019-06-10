@@ -1,25 +1,27 @@
+# development
+cd ui
 
-Project setup
-=============
-vue create zampino   # (select 'babel' , 'eslint')
+## Sart Server with
+> quasar dev
 
-development build: npm run serve
-production build:  npm run build
+## Production build
+> quasar build
 
-vue docu
-========
+# Project setup
+quasar ...
+vue create zamp...   # (select 'spa', 'babel' , 'eslint')
+
+# Documentation
+## vue docu
 https://github.com/vuejs/awesome-vue
 
-libraries
-=========
+## libraries
 ui   https://vuetifyjs.com/
 ui   https://framework7.io/
 font https://codepen.io/SitePoint/pen/Yyarzd
 
-location
-========
-open location code
-------------------
+# location
+## open location code
 https://en.wikipedia.org/wiki/Open_Location_Code
 http://ausleuchtung.ch/olc/
 https://github.com/google/open-location-code
