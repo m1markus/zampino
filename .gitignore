@@ -128,5 +128,7 @@ Temporary Items
 # Ignore all local history of files
 .history
 
+.settings/
+
 # End of https://www.gitignore.io/api/macos,intellij+all,visualstudiocode
 
