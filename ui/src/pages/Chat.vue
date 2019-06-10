@@ -39,6 +39,7 @@ export default {
   name: 'Chat',
   data: function () {
     return {
+      ws: undefined,
       isJoinDisabled: true,
       showNickSelect: true,
       nickname: '',
@@ -63,6 +64,22 @@ export default {
       ]
     }
   },
+  mounted: function () {
+    let ws = new WebSocket('ws://localhost:8080/api/v1/wsocket')
+    ws.onmessage = function (data) {
+      console.log('new peer message received:', data)
+    }
+    ws.onerror = function (event) {
+      console.error('WebSocket error observed:', event)
+    }
+    ws.onopen = function (event) {
+      console.log('WebSocket is open now:', event)
+    }
+    ws.onclose = function (event) {
+      console.log('WebSocket is closed now:', event)
+    }
+    this.ws = ws
+  },
   methods: {
     handleSend: function () {
       // let msg = 'try to send: ' + this.nextMessage
@@ -82,6 +99,8 @@ export default {
         message: [this.nextMessage]
       }
       this.chatHistory.push(message)
+      let msg = JSON.stringify(message)
+      this.ws.send(msg)
       // alert(JSON.stringify(message))
     },
     handleJoin: function () {

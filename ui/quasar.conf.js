@@ -77,7 +77,13 @@ module.exports = function (ctx) {
       // https: true,
       // port: 8080,
       host: '0.0.0.0',
-      open: true // opens browser window automatically
+      open: true, // opens browser window automatically
+      proxy: {
+        '/api/v1/wsocket': {
+          target: 'ws://localhost:9000',
+          ws: true
+        }
+      },
     },
 
     // animations: 'all', // --- includes all animations

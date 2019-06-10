@@ -1,4 +1,4 @@
-package ch.m1m.app.zampano.zampano;
+package ch.m1m.app.zampano;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

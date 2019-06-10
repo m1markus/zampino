@@ -4,7 +4,7 @@
   "description": "A Quasar Framework app",
   "productName": "Zampano",
   "cordovaId": "org.cordova.quasar.app",
-  "author": "mmm <mmm7@bluewin.ch>",
+  "author": "me <someone@someplace.com>",
   "private": true,
   "scripts": {
     "lint": "eslint --ext .js,.vue src",

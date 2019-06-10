@@ -1,4 +1,4 @@
-package ch.m1m.app.zampano.zampano;
+package ch.m1m.app.zampano;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

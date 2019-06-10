@@ -1,4 +1,4 @@
-package ch.m1m.app.zampano.zampano;
+package ch.m1m.app.zampano;
 
 public class UploadFileResponse {
     private String fileName;

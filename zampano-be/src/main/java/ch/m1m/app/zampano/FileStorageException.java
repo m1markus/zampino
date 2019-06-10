@@ -1,4 +1,4 @@
-package ch.m1m.app.zampano.zampano;
+package ch.m1m.app.zampano;
 
 public class FileStorageException extends RuntimeException {
     public FileStorageException(String message) {
