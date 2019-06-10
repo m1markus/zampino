@@ -8,12 +8,10 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 @EnableConfigurationProperties({
         FileStorageProperties.class
 })
-public class ZampanoApplication {
+public class Application {
 
     public static void main(String[] args) {
 
-        SpringApplication.run(ZampanoApplication.class, args);
+        SpringApplication.run(Application.class, args);
     }
-
 }
-
