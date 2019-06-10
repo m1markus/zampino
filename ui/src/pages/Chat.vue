@@ -4,7 +4,7 @@
       <!-- enter the nickname -->
       <div v-if="showNickSelect" class="row q-gutter-md">
         <div class="col-12">
-           <q-input v-model="nickname" @input='handleNicknameInput' label="Nickname" :dense="dense" />
+           <q-input v-model="nickname" @input='handleNicknameInput' label="Nickname" />
         </div>
         <div class="col-12">
             <q-btn :disable="isJoinDisabled" @click='handleJoin' color="primary" label="Join" no-caps />
@@ -19,6 +19,10 @@
           <q-chat-message name="Jane" :text="['doing fine, how r you?', 'hey', 'men']" />
           <q-chat-message sent name="me" :text="['hey everybody']" />
           -->
+        </div>
+        <div class="row q-gutter-md">
+          <q-input outlined v-model="nextMessage" label="Your message" />
+          <q-btn  @click='handleSend' color="primary" label="Send" no-caps />
         </div>
       </div>
     </div>
@@ -38,7 +42,10 @@ export default {
       isJoinDisabled: true,
       showNickSelect: true,
       nickname: '',
+      nextMessage: '',
+      messageIndex: 0,
       chatHistory: [
+        /*
         { id: '1', me: true, name: 'Markus', message: ['hey you'] },
         { id: '2', me: false, name: 'Sandy', message: ['I love you'] },
         { id: '3', me: true, name: 'Markus', message: ['I love you too'] },
@@ -52,10 +59,31 @@ export default {
         { id: '11', me: false, name: 'Sandy', message: ['I love you'] },
         { id: '12', me: true, name: 'Markus', message: ['I love you too'] },
         { id: '13', me: false, name: 'Sandy', message: ['this', 'is e very very very looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong line', 'it'] }
+        */
       ]
     }
   },
   methods: {
+    handleSend: function () {
+      // let msg = 'try to send: ' + this.nextMessage
+      // alert(msg)
+      this.addLocalMessage()
+    },
+    addRemoteMessage: function () {
+
+    },
+    addLocalMessage: function () {
+      // { id: '11', me: true, name: 'Markus', message: ['I love you'] },
+      let message = {
+        id: this.messageIndex++,
+        me: true,
+        name: this.nickname,
+        // don't forget, this is an array of messages
+        message: [this.nextMessage]
+      }
+      this.chatHistory.push(message)
+      // alert(JSON.stringify(message))
+    },
     handleJoin: function () {
       if (this.nickname !== '') {
         this.showNickSelect = false
