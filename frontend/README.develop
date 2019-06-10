@@ -1,0 +1,27 @@
+
+Project setup
+=============
+vue create zampino   # (select 'babel' , 'eslint')
+
+development build: npm run serve
+production build:  npm run build
+
+vue docu
+========
+https://github.com/vuejs/awesome-vue
+
+libraries
+=========
+ui   https://vuetifyjs.com/
+ui   https://framework7.io/
+font https://codepen.io/SitePoint/pen/Yyarzd
+
+location
+========
+open location code
+------------------
+https://en.wikipedia.org/wiki/Open_Location_Code
+http://ausleuchtung.ch/olc/
+https://github.com/google/open-location-code
+C't article: https://www.heise.de/select/ct/2019/1/softlinks/y89b
+
