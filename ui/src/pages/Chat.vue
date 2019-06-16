@@ -65,22 +65,44 @@ export default {
     }
   },
   mounted: function () {
-    let ws = new WebSocket('ws://localhost:8080/api/v1/wsocket')
-    ws.onmessage = function (data) {
-      console.log('new peer message received:', data)
-    }
-    ws.onerror = function (event) {
-      console.error('WebSocket error observed:', event)
-    }
-    ws.onopen = function (event) {
-      console.log('WebSocket is open now:', event)
-    }
-    ws.onclose = function (event) {
-      console.log('WebSocket is closed now:', event)
-    }
-    this.ws = ws
+    this.wsConnect()
   },
   methods: {
+    wsConnect: function () {
+      // auto decide if secure mode is needed
+      let wsProtocol = null
+      if (location.protocol.includes('https')) {
+        wsProtocol = 'wss'
+      } else {
+        wsProtocol = 'ws'
+      }
+      let ws = new WebSocket(wsProtocol + '://' + location.host + '/api/v1/wsocket')
+      const chatHistoryConst = this.chatHistory
+      ws.onmessage = function (event) {
+        console.log('new peer message received:', event.data)
+        let remoteMessage = JSON.parse(event.data)
+        let message = {
+          id: this.messageIndex++,
+          me: false,
+          name: remoteMessage.name,
+          // don't forget, this is an array of messages
+          message: remoteMessage.message
+        }
+        chatHistoryConst.push(message)
+        // alert(JSON.stringify(message))
+      }
+      ws.onerror = function (event) {
+        console.error('WebSocket error observed:', event)
+        ws.close()
+      }
+      ws.onopen = function (event) {
+        console.log('WebSocket is open now:', event)
+      }
+      ws.onclose = function (event) {
+        console.log('WebSocket is closed now:', event)
+      }
+      this.ws = ws
+    },
     handleSend: function () {
       // let msg = 'try to send: ' + this.nextMessage
       // alert(msg)
@@ -101,6 +123,7 @@ export default {
       this.chatHistory.push(message)
       let msg = JSON.stringify(message)
       this.ws.send(msg)
+      // alert(location.protocol)
       // alert(JSON.stringify(message))
     },
     handleJoin: function () {

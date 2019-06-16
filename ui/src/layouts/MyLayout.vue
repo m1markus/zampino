@@ -15,8 +15,10 @@
         <q-toolbar-title>
           Zampano
         </q-toolbar-title>
-
+        <!--
         <div>Quasar v{{ $q.version }}</div>
+        -->
+        <div>v0.0.1</div>
       </q-toolbar>
     </q-header>
 

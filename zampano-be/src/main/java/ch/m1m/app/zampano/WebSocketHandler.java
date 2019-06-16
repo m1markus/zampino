@@ -29,7 +29,10 @@ public class WebSocketHandler extends TextWebSocketHandler {
 
         for (WebSocketSession webSocketSession : sessions) {
             Map value = new Gson().fromJson(message.getPayload(), Map.class);
-            webSocketSession.sendMessage(new TextMessage("Hello " + value.get("name") + " !"));
+            //webSocketSession.sendMessage(new TextMessage("Hello " + value.get("name") + " !"));
+            if (webSocketSession != session) {
+                webSocketSession.sendMessage(message);
+            }
         }
     }
 
