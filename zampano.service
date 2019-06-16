@@ -1,0 +1,14 @@
+[Unit]
+Description=zampano
+After=syslog.target
+
+[Service]
+WorkingDirectory=/var/data/zampano/www
+SyslogIdentifier=zampano
+ExecStart=/bin/bash -c "java -jar /var/data/zampano/www/zampano-be.jar --server.address=127.0.0.1 --server.port=9000"
+User=nginx
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
+
