@@ -1,6 +1,12 @@
 
+nginx Error during WebSocket handshake: Unexpected
+
+
 
 ## start in combined mode (ui / ws server)
+
+pass optional program arguments: --server.address=127.0.0.1  (on hosting server)
+                                 --server.port=8080
 java -jar /Users/mue/work/git/github_m1markus/zampino/zampano-be/target/zampano-be-0.0.1-SNAPSHOT.jar --server.port=8080
 
 
