@@ -2,6 +2,19 @@
 nginx Error during WebSocket handshake: Unexpected
 
 
+https://stackoverflow.com/questions/12102110/nginx-to-reverse-proxy-websockets-and-enable-ssl-wss
+
+nginx.conf
+...
+location /websocket/ {
+    proxy_pass http://backend_host;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+
+    proxy_read_timeout 86400;
+}
+
 
 ## start in combined mode (ui / ws server)
 
@@ -18,3 +31,12 @@ spring boot add usercred and group after login: https://dzone.com/articles/sprin
 
 spring boot websocket without stomp: https://www.devglan.com/spring-boot/spring-websocket-integration-example-without-stomp
 
+## backend
+
+https://redis.io/clients
+
+https://lettuce.io/
+
+https://hazelcast.org/
+
+https://jet.hazelcast.org/
