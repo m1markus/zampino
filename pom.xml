@@ -22,7 +22,8 @@
 	</properties>
 
     <modules>
-        <module>zampano-be</module>
+			<module>ui</module>
+      <module>zampano-be</module>
     </modules>
 
 </project>
