@@ -22,3 +22,11 @@ chromedriver
 cucumber
 
 puppeteer
+
+# Open Location Code
+
+github: 
+
+demo:
+https://plus.codes/map/
+https://cvzi.github.io/open-location-code-demo/#nointro
