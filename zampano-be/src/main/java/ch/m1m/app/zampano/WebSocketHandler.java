@@ -25,10 +25,16 @@ public class WebSocketHandler extends TextWebSocketHandler {
     public void handleTextMessage(WebSocketSession session, TextMessage message)
             throws InterruptedException, IOException {
 
-        log.info("ws message received: {}", message.getPayload());
+        String messageText = message.getPayload();
+
+        log.info("ws message received: {}", messageText);
+        if (messageText.contains("zPing")) {
+            session.sendMessage(message);
+            return;
+        }
 
         for (WebSocketSession webSocketSession : sessions) {
-            Map value = new Gson().fromJson(message.getPayload(), Map.class);
+            //Map value = new Gson().fromJson(message.getPayload(), Map.class);
             //webSocketSession.sendMessage(new TextMessage("Hello " + value.get("name") + " !"));
             if (webSocketSession != session) {
                 webSocketSession.sendMessage(message);

@@ -21,7 +21,7 @@
           -->
         </div>
         <div class="row q-gutter-md">
-          <q-input outlined v-model="nextMessage" label="Your message" />
+          <q-input outlined v-model="nextMessage" ref="focusNextMessage" label="Your message" />
           <q-btn  @click='handleSend' color="primary" label="Send" no-caps />
         </div>
       </div>
@@ -66,6 +66,13 @@ export default {
   },
   mounted: function () {
     this.wsConnect()
+    let self = this
+    console.log('chat component mounted')
+    setInterval(function () {
+      console.log('prepare send zPing message')
+      self.sendZPing()
+      // self.basketAddSuccess = false;
+    }, 30 * 1000)
   },
   methods: {
     wsConnect: function () {
@@ -88,7 +95,10 @@ export default {
           // don't forget, this is an array of messages
           message: remoteMessage.message
         }
-        chatHistoryConst.push(message)
+        if (!event.data.includes('zPing')) {
+          chatHistoryConst.push(message)
+        }
+        // chatHistoryConst.push(message)
         // alert(JSON.stringify(message))
       }
       ws.onerror = function (event) {
@@ -123,13 +133,36 @@ export default {
       this.chatHistory.push(message)
       let msg = JSON.stringify(message)
       this.ws.send(msg)
+      // clear the input message
+      this.nextMessage = ''
+      // this.$refs.focusNextMessage.focus()
+      this.setFocusToInput()
       // alert(location.protocol)
       // alert(JSON.stringify(message))
+    },
+    sendZPing: function () {
+      let message = {
+        id: -1,
+        me: false,
+        name: this.nickname,
+        // don't forget, this is an array of messages
+        message: ['zPing']
+      }
+      let msg = JSON.stringify(message)
+      this.ws.send(msg)
+      console.log('zPing sent')
+    },
+    setFocusToInput: function () {
+      this.$refs.focusNextMessage.focus()
     },
     handleJoin: function () {
       if (this.nickname !== '') {
         this.showNickSelect = false
       }
+      let that = this
+      this.$nextTick(() => {
+        that.$refs.focusNextMessage.focus()
+      })
     },
     handleNicknameInput: function (value) {
       // console.log('change detected for nickname: ' + value)

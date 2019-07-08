@@ -18,7 +18,7 @@
         <!--
         <div>Quasar v{{ $q.version }}</div>
         -->
-        <div>v0.0.1</div>
+        <div>v0.0.2</div>
       </q-toolbar>
     </q-header>
 
