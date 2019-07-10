@@ -33,7 +33,7 @@
         -->
         <q-item clickable tag="a"  href="#/settings">
           <q-item-section avatar>
-            <q-icon name="school" />
+            <q-icon name="settings" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Settings</q-item-label>
@@ -41,7 +41,7 @@
         </q-item>
         <q-item clickable tag="a" href="#/info" >
           <q-item-section avatar>
-            <q-icon name="code" />
+            <q-icon name="info" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Info</q-item-label>
@@ -49,7 +49,7 @@
         </q-item>
         <q-item clickable tag="a" href="#/development" >
           <q-item-section avatar>
-            <q-icon name="code" />
+            <q-icon name="build" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Development</q-item-label>
