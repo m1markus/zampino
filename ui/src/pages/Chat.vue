@@ -141,6 +141,11 @@ export default {
       // alert(JSON.stringify(message))
     },
     sendZPing: function () {
+      if (this.ws.readyState !== 1) {
+        console.log('reconnecting...')
+        this.ws.close()
+        this.wsConnect()
+      }
       let message = {
         id: -1,
         me: false,
@@ -150,7 +155,7 @@ export default {
       }
       let msg = JSON.stringify(message)
       this.ws.send(msg)
-      console.log('zPing sent')
+      console.log('zPing sent WebSocket:readyState=' + this.ws.readyState)
     },
     setFocusToInput: function () {
       this.$refs.focusNextMessage.focus()
