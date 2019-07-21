@@ -1,0 +1,16 @@
+npm install -g framework7-cli
+
+mkdir ui7/
+cd ui7
+framework7 create
+...
+
+  - 🔥 Run "npm start" to run development server
+  - 🔧 Run "npm run build-prod" to build web app for production
+  - 🔧 Run "npm run build-dev"
+
+npm install -g framework7-cli
+
+framework7 create --ui --port 8080
+framework7 generate-assets --ui --port 8080
+
