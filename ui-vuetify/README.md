@@ -1,4 +1,6 @@
 # ui-vuetify
+https://github.com/vuetifyjs/vuetify/releases/tag/v2.0.0-beta.0
+https://vuetifyjs.com/en/
 
 ## Project setup
 ```
