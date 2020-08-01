@@ -156,3 +156,18 @@
     </f7-list>
   </f7-page>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+    }
+  },
+
+  mounted() {
+    this.$f7.panel.close(false)
+    //alert('got loaded')
+    console.log('got loaded')
+  }
+}
+</script>
