@@ -2,6 +2,9 @@
 https://github.com/vuetifyjs/vuetify/releases/tag/v2.0.0-beta.0
 https://vuetifyjs.com/en/
 
+icon set: https://materialdesignicons.com/cdn/2.0.46/
+spacing:  https://vuetifyjs.com/en/styles/spacing
+
 ## Project setup
 ```
 npm install
