@@ -2,12 +2,15 @@
   <nav>
     <v-app-bar flat app>
       <v-app-bar-nav-icon class="grey--text" @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-btn color="secondary" class="mr-3" depressed fab text small @click="$router.go(-1)">
+        <v-icon >mdi-chevron-left</v-icon>
+      </v-btn>
       <v-toolbar-title class="grey--text">
         <span>ZAMP</span>
         <span class="font-weight-light">ANO</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn>
+      <v-btn @click="$router.go(-1)">
         <span>Sign Out</span>
         <v-icon right>exit_to_app</v-icon>
       </v-btn>

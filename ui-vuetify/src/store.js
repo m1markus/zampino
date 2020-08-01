@@ -7,7 +7,9 @@ Vue.version
 
 export default new Vuex.Store({
   state: {
-
+    network: {
+      ws_connected: false,
+    },
     software: [
       { component: 'vue', version: Vue.version },
     ]

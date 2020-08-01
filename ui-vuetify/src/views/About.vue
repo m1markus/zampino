@@ -1,7 +1,9 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae minima fugiat, labore nam ipsa, hic incidunt animi, non possimus ullam eum deleniti et esse? Eveniet eaque explicabo delectus hic enim.
-    </p>
-  </div>
+    <v-container class="grey lighten-3">
+      <v-row>
+        <v-col cols="12">
+            <h1>This is an about page</h1>
+        </v-col>
+      </v-row>
+    </v-container>
 </template>
