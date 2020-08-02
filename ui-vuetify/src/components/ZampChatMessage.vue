@@ -1,30 +1,20 @@
 <template>
 
-    <v-timeline-item
-      color="purple lighten-2"
+    <v-timeline-item 
+      small
       fill-dot
-      right
+      :color="computeMiddleBallColor"
+      :left="computeShowLeft"
     >
       <v-card>
-        <v-card-title class="purple lighten-2">
-          <v-icon
-            dark
-            size="42"
-            class="mr-4"
-          >
-            mdi-magnify
-          </v-icon>
-          <h2 class="display-1 white--text font-weight-light">Title 1</h2>
+        <v-card-title class="lighten-2" :class="computeClassForCardTitleBackground">
+          <v-icon dark size="18" class="mr-4">mdi-account-question</v-icon>
+          <h2 class="subtitle-1 white--text font-weight-light">{{message.name}}</h2>
         </v-card-title>
         <v-container>
           <v-row>
-            <v-col cols="12" md="10">
-              Why is this message so short.
-            </v-col>
-            <v-col
-              class="hidden-sm-and-down text-right"
-              md="2"
-            >
+            <v-col cols="12" md="10">{{message.message[0]}}</v-col>
+            <v-col class="hidden-sm-and-down text-right" md="2">
               <v-icon size="64">mdi-calendar-text</v-icon>
             </v-col>
           </v-row>
@@ -51,9 +41,30 @@ export default {
       dummy: false
     }
   },
-  methods: {
-    dummyFunc1: function () {
+  computed: {
+    computeShowLeft() {
+      if (this.message.me != true) {
+        return true
+      }
+      return false
+    },
+    computeMiddleBallColor() {
+      if (this.message.me != true) {
+        return 'purple lighten-2'
+      }
+      return 'blue lighten-2'
+    },
+    computeClassForCardTitleBackground() {
+      if (this.message.me != true) {
+        return 'purple'
+      }
+      return 'blue'
     }
+  },
+  methods: {
+    myDummyTrue() {
+      return true
+    },
   }
 }
 </script>

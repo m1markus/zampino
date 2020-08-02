@@ -18,6 +18,15 @@
           </v-timeline>
         </v-col>
       </v-row>
+      <v-row v-if="!showNickSelect">
+        <v-col cols="12" sm="9">
+          <v-text-field label="Your message"></v-text-field>
+        </v-col>
+        <v-col cols="12" sm="3">
+          <v-btn class="ma-1" rounded outlined color="indigo">Send</v-btn>
+        </v-col>       
+      </v-row>
+
 
     </v-container>
 </template>
@@ -30,13 +39,13 @@ export default {
   data: function () {
     return {
       ws: undefined,
-      showNickSelect: false,
+      showNickSelect: true,
       isJoinDisabled: true,
       nickname: '',
       nextMessage: '',
       messageIndex: 0,
       chatHistory: [
-        
+
         { id: '1', me: true, name: 'Markus', message: ['hey you'] },
         { id: '2', me: false, name: 'Sandy', message: ['I love you'] },
 
@@ -56,9 +65,10 @@ export default {
       ]
     }
   },
-  mounted: function() {
-    console.log('HOME got mounte')
-    console.log('HOME got mounted, vuetify breakpoint: sxOnly' + $vuetify.breakpoint.sxOnly)
+  mounted() {
+    let xx = 'my'
+    console.log('HOME got mounted', xx)
+    //window.console.log('HOME got mounted, vuetify breakpoint: sxOnly' + $vuetify.breakpoint.sxOnly)
   },
   components: {
     'zamp-chat-message': ZampChatMessage

@@ -25,7 +25,7 @@
 export default {
     data: () => ({
         vueVersion: undefined,
-        vuetifyVersion: 'x.y.z',
+        vuetifyVersion: 'fix 2.3.7',
     }),
     mounted() {
         this.vueVersion = this.$store.state.software[0].version
