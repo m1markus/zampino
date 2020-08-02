@@ -10,10 +10,11 @@
         <span class="font-weight-light">ANO</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
+      <!--
       <v-btn @click="$router.go(-1)">
         <span>Sign Out</span>
         <v-icon right>exit_to_app</v-icon>
-      </v-btn>
+      </v-btn> -->
     </v-app-bar>
 
     <v-navigation-drawer v-model="drawer" app >
