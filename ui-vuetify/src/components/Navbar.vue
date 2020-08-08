@@ -1,7 +1,6 @@
 <template>
   <nav>
     <v-app-bar flat app>
-      <v-app-bar-nav-icon class="grey--text" @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-btn color="secondary" class="mr-3" depressed fab text small @click="$router.go(-1)">
         <v-icon >mdi-chevron-left</v-icon>
       </v-btn>
@@ -10,6 +9,9 @@
         <span class="font-weight-light">ANO</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
+
+      <v-app-bar-nav-icon class="grey--text" @click="drawer = !drawer"></v-app-bar-nav-icon>
+
       <!--
       <v-btn @click="$router.go(-1)">
         <span>Sign Out</span>
@@ -17,7 +19,7 @@
       </v-btn> -->
     </v-app-bar>
 
-    <v-navigation-drawer v-model="drawer" app >
+    <v-navigation-drawer v-model="drawer" app right >
       <v-list dense nav>
         <v-list-item-group color="grey">
           <v-list-item class v-for="link in links" :key="link.title" route :to="link.route">
