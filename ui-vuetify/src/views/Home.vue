@@ -26,10 +26,10 @@
     </v-row>
     <v-row v-if="!showNickSelect">
       <v-col cols="12" sm="9">
-        <v-text-field label="Your message"></v-text-field>
+        <v-text-field v-model="nextMessage" ref="focusNextMessage" label="Your message"></v-text-field>
       </v-col>
       <v-col cols="12" sm="3">
-        <v-btn class="ma-1" rounded outlined color="indigo">Send</v-btn>
+        <v-btn class="ma-1" @click="handleSend" rounded outlined color="indigo">Send</v-btn>
       </v-col>
     </v-row>
   </v-container>
@@ -49,10 +49,9 @@ export default {
       nextMessage: "",
       messageIndex: 0,
       chatHistory: [
+                /*
         { id: "1", me: true, name: "Markus", message: ["hey you"] },
         { id: "2", me: false, name: "Sandy", message: ["I love you"] },
-
-        /*
         { id: '3', me: true, name: 'Markus', message: ['I love you too'] },
         { id: '4', me: true, name: 'Markus', message: ['hey you'] },
         { id: '5', me: false, name: 'Sandy', message: ['I love you'] },
@@ -69,11 +68,101 @@ export default {
     };
   },
   mounted() {
-    let xx = "my";
-    console.log("HOME got mounted", xx);
-    //window.console.log('HOME got mounted, vuetify breakpoint: sxOnly' + $vuetify.breakpoint.sxOnly)
+    this.wsConnect();
+    let self = this;
+    console.log("chat component mounted");
+    setInterval(function () {
+      console.log("prepare send zPing message");
+      self.sendZPing();
+      // self.basketAddSuccess = false;
+    }, 30 * 1000);
   },
   methods: {
+    wsConnect: function () {
+      // auto decide if secure mode is needed
+      let wsProtocol = null;
+      if (location.protocol.includes("https")) {
+        wsProtocol = "wss";
+      } else {
+        wsProtocol = "ws";
+      }
+      let ws = new WebSocket(
+        wsProtocol + "://" + location.host + "/api/v1/wsocket"
+      );
+      const chatHistoryConst = this.chatHistory;
+      ws.onmessage = function (event) {
+        console.log("new peer message received:", event.data);
+        let remoteMessage = JSON.parse(event.data);
+        let message = {
+          id: this.messageIndex++,
+          me: false,
+          name: remoteMessage.name,
+          // don't forget, this is an array of messages
+          message: remoteMessage.message,
+        };
+        if (!event.data.includes("zPing")) {
+          chatHistoryConst.push(message);
+        }
+        // chatHistoryConst.push(message)
+        // alert(JSON.stringify(message))
+      };
+      ws.onerror = function (event) {
+        console.error("WebSocket error observed:", event);
+        ws.close();
+      };
+      ws.onopen = function (event) {
+        console.log("WebSocket is open now:", event);
+      };
+      ws.onclose = function (event) {
+        console.log("WebSocket is closed now:", event);
+      };
+      this.ws = ws;
+    },
+    handleSend: function () {
+      // let msg = 'try to send: ' + this.nextMessage
+      // alert(msg)
+      this.addLocalMessage();
+    },
+    addRemoteMessage: function () {},
+    addLocalMessage: function () {
+      // { id: '11', me: true, name: 'Markus', message: ['I love you'] },
+      let message = {
+        id: this.messageIndex++,
+        me: true,
+        name: this.nickname,
+        // don't forget, this is an array of messages
+        message: [this.nextMessage],
+      };
+      this.chatHistory.push(message);
+      let msg = JSON.stringify(message);
+      this.ws.send(msg);
+      // clear the input message
+      this.nextMessage = "";
+      // this.$refs.focusNextMessage.focus()
+      this.setFocusToInput();
+      // alert(location.protocol)
+      // alert(JSON.stringify(message))
+    },
+    sendZPing: function () {
+      if (this.ws.readyState !== 1) {
+        console.log("reconnecting...");
+        this.ws.close();
+        this.wsConnect();
+      }
+      let message = {
+        id: -1,
+        me: false,
+        name: this.nickname,
+        // don't forget, this is an array of messages
+        message: ["zPing"],
+      };
+      let msg = JSON.stringify(message);
+      this.ws.send(msg);
+      console.log("zPing sent WebSocket:readyState=" + this.ws.readyState);
+    },
+    setFocusToInput: function () {
+      this.$refs.focusNextMessage.focus();
+    },
     handleJoin: function () {
       if (this.nickname !== "") {
         this.showNickSelect = false;
@@ -85,7 +174,7 @@ export default {
     },
     handleNicknameInput: function (value) {
       console.log("change detected for nickname: " + value);
-      this.nickname = value
+      this.nickname = value;
       if (value !== undefined) {
         let n = value.length;
         if (n > 0) {
