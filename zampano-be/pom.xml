@@ -65,7 +65,7 @@
 							<overwrite>true</overwrite>
 							<resources>
 								<resource>
-									<directory>${project.parent.basedir}/ui/dist/spa</directory>
+									<directory>${project.parent.basedir}/ui-vuetify/dist</directory>
 								</resource>
 							</resources>
 						</configuration>

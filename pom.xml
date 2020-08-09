@@ -22,7 +22,7 @@
 	</properties>
 
     <modules>
-      <module>ui</module>
+      <module>ui-vuetify</module>
       <module>zampano-be</module>
     </modules>
 
