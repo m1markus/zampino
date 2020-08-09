@@ -7,7 +7,13 @@
     </v-row>
     <v-row v-if="showNickSelect">
       <v-col cols="1">
-        <v-btn class="ma-1" :disabled="isJoinDisabled" outlined color="indigo">Join</v-btn>
+        <v-btn
+          class="ma-1"
+          :disabled="isJoinDisabled"
+          @click="handleJoin"
+          outlined
+          color="indigo"
+        >Join</v-btn>
       </v-col>
     </v-row>
 
@@ -68,8 +74,18 @@ export default {
     //window.console.log('HOME got mounted, vuetify breakpoint: sxOnly' + $vuetify.breakpoint.sxOnly)
   },
   methods: {
+    handleJoin: function () {
+      if (this.nickname !== "") {
+        this.showNickSelect = false;
+      }
+      let that = this;
+      this.$nextTick(() => {
+        that.$refs.focusNextMessage.focus();
+      });
+    },
     handleNicknameInput: function (value) {
       console.log("change detected for nickname: " + value);
+      this.nickname = value
       if (value !== undefined) {
         let n = value.length;
         if (n > 0) {
