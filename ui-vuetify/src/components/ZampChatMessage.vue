@@ -5,6 +5,7 @@
       fill-dot
       :color="computeMiddleBallColor"
       :left="computeShowLeft"
+      :right="computeShowRight"
     >
       <v-card>
         <v-card-title class="lighten-2" :class="computeClassForCardTitleBackground">
@@ -15,7 +16,7 @@
           <v-row>
             <v-col cols="12" md="10">{{message.message[0]}}</v-col>
             <v-col class="hidden-sm-and-down text-right" md="2">
-              <v-icon size="64">mdi-calendar-text</v-icon>
+              <v-icon size="32">mdi-calendar-text</v-icon>
             </v-col>
           </v-row>
         </v-container>
@@ -35,27 +36,35 @@
 <script>
 export default {
   name: 'ZampChatMessage',
-  props: ['message'],
+  props: {
+    message: Object
+  },
   data: function () {
     return {
-      dummy: false
+      inMessage: this.message
     }
   },
   computed: {
-    computeShowLeft() {
-      if (this.message.me != true) {
-        return true
+    computeShowLeft: function() {
+      console.log("computeShowLeft() called with: ", this.inMessage)
+      let showLeft = true
+      if (this.inMessage.me) {
+        showLeft = false
       }
-      return false
+      console.log("computeShowLeft() returns: ", showLeft)
+      return showLeft
+    },
+    computeShowRight() {
+      return !this.computeShowLeft
     },
     computeMiddleBallColor() {
-      if (this.message.me != true) {
+      if (this.inMessage.me != true) {
         return 'purple lighten-2'
       }
       return 'blue lighten-2'
     },
     computeClassForCardTitleBackground() {
-      if (this.message.me != true) {
+      if (this.inMessage.me != true) {
         return 'purple'
       }
       return 'blue'
