@@ -1,3 +1,19 @@
+background gradient
+http://cssgradient.io
+#0a6582
+#012336
+background: radial-gradient(circle, rgba(10,101,130,1) 0%, rgba(1,35,54,1) 100%);
+
+CSS glow neon
+http://pixeltuner.de/css3-text-shadow
+
+font
+https://fontlibrary.org/en/font/beon
+
+
+
+2019 started with Quasar UI Framework, backend ist spring boot websocket
+2020 UI migrated to Vuetify
 
 
 other free GUI frameworks
