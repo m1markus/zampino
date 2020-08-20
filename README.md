@@ -11,7 +11,15 @@ font
 https://fontlibrary.org/en/font/beon
 
 
+https://vuejs.org/
+https://vuetifyjs.com/en/components/timelines/
 
+tutorial
+https://www.sitepoint.com/get-started-vuetify
+
+
+history
+=======
 2019 started with Quasar UI Framework, backend ist spring boot websocket
 2020 UI migrated to Vuetify
 
@@ -21,6 +29,7 @@ other free GUI frameworks
 - https://framework7.io/
 - https://onsen.io/v2/guide/
 - https://ionicframework.com/
+- https://quasar.dev/start/pick-quasar-flavour
 
 
 lerning js
