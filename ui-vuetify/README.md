@@ -37,3 +37,5 @@ npm run test:unit
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+Path Prefix: https://stackoverflow.com/questions/41395641/vuejs-difficulties-to-build-with-relative-path/41395792?noredirect=1#comment69996655_41395792

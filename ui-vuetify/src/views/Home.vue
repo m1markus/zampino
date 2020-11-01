@@ -46,13 +46,13 @@ export default {
   data: function () {
     return {
       ws: undefined,
-      showNickSelect: false,
+      showNickSelect: true,
       isJoinDisabled: true,
       nickname: "",
       nextMessage: "",
       messageIndex: 0,
       chatHistory: [
-                
+        /*         
         { id: "1", me: true, name: "Markus", message: ["hey you"] },
         { id: "2", me: false, name: "Sandy", message: ["I love you"] },
         { id: '3', me: true, name: 'Markus', message: ['I love you too'] },
@@ -66,7 +66,7 @@ export default {
         { id: '11', me: false, name: 'Sandy', message: ['I love you'] },
         { id: '12', me: true, name: 'Markus', message: ['I love you too'] },
         { id: '13', me: false, name: 'Sandy', message: ['is e very very very looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong line'] }
-        
+        */
       ],
     };
   },
