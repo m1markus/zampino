@@ -30,6 +30,8 @@
     <quarkus.platform.version>1.8.3.Final</quarkus.platform.version>
     <quarkus.platform.artifact-id>quarkus-universe-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
+
+    <jetty-version>9.4.12.v20180830</jetty-version>
   </properties>
 
   <dependencyManagement>
@@ -92,6 +94,63 @@
       <artifactId>quarkus-junit5</artifactId>
       <scope>test</scope>
     </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.glassfish.tyrus/tyrus-client -->
+    <!--
+    <dependency>
+      <groupId>org.glassfish.tyrus</groupId>
+      <artifactId>tyrus-client</artifactId>
+      <version>1.17</version>
+      <scope>test</scope>
+    </dependency> -->
+    <dependency>
+      <groupId>org.glassfish.tyrus</groupId>
+      <artifactId>tyrus-container-jdk-client</artifactId>
+      <version>1.17</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish.tyrus</groupId>
+      <artifactId>tyrus-container-grizzly-client</artifactId>
+      <version>1.17</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.eclipse.jetty.websocket/websocket-client
+    <dependency>
+      <groupId>org.eclipse.jetty.websocket</groupId>
+      <artifactId>websocket-client</artifactId>
+      fail
+      <version>9.4.33.v20201020</version>
+      <version>9.4.30.v20200611</version>
+      OK
+      <version>9.4.12.v20180830</version>
+      <scope>test</scope>
+    </dependency>  -->
+    <dependency>
+      <groupId>org.eclipse.jetty.websocket</groupId>
+      <artifactId>websocket-client</artifactId>
+      <version>${jetty-version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-http</artifactId>
+      <version>${jetty-version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-client</artifactId>
+      <version>${jetty-version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jetty</groupId>
+      <artifactId>jetty-io</artifactId>
+      <version>${jetty-version}</version>
+      <scope>test</scope>
+    </dependency>
+
   </dependencies>
 
   <build>
