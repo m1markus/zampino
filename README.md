@@ -20,7 +20,7 @@ https://www.sitepoint.com/get-started-vuetify
 
 history
 =======
-2019 started with Quasar UI Framework, backend ist spring boot websocket
+2019 started with Quasar UI Framework, backend spring boot websocket
 2020 UI migrated to Vuetify
 
 
