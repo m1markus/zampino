@@ -15,6 +15,8 @@ live-server .
 ```
 
 ## Setup
+from: https://www.microverse.org/blog/configure-tailwind-css-for-vanilla-js-with-jit-in-10-easy-steps
+
 see: https://tailwindcss.com/docs/installation
 
 https://medium.com/@mitchwd/creating-a-project-with-tailwind-123a2960e1fa
