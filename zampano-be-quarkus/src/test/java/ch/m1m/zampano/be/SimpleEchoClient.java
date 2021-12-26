@@ -4,6 +4,7 @@ import org.eclipse.jetty.websocket.client.ClientUpgradeRequest;
 import org.eclipse.jetty.websocket.client.WebSocketClient;
 
 import java.net.URI;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 // https://www.eclipse.org/jetty/documentation/current/jetty-websocket-client-api.html
@@ -15,14 +16,16 @@ public class SimpleEchoClient {
 
     public static void main(String[] args) {
         int index = -1;
-        //String destUri = "ws://echo.websocket.org";
         String destUri = "ws://localhost:9000/api/v1/wsocket";
+        String nickName = "bot-1";
+
         if (args.length > 0) {
             destUri = args[0];
         }
 
         WebSocketClient client = new WebSocketClient();
         SimpleEchoSocket socket = new SimpleEchoSocket();
+
         try {
             client.start();
 
@@ -30,16 +33,29 @@ public class SimpleEchoClient {
 
             URI echoUri = new URI(destUri);
             ClientUpgradeRequest request = new ClientUpgradeRequest();
-            client.connect(socket, echoUri, request);
             System.out.printf("Connecting to : %s%n", echoUri);
+
+            client.connect(socket, echoUri, request);
             socket.awaitConnected(2, TimeUnit.SECONDS);
 
-            String msg = formatChatMessage(++index, "bot-1", "Thanks for the conversation");
+            Scanner scanner = new Scanner(System.in);
 
-            socket.sendTextMessage(msg);
+            while (true) {
+                try {
+                    System.out.println("enter your chat message: ");
+                    String inLine = scanner.nextLine();
+
+                    String msg = formatChatMessage(++index, nickName, inLine);
+                    socket.sendTextMessage(msg);
+
+                    System.out.println("your input was: " + inLine);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
 
             // wait for closed socket connection.
-            socket.awaitClose(5, TimeUnit.SECONDS);
+            //socket.awaitClose(5, TimeUnit.SECONDS);
 
         } catch (Throwable t) {
             t.printStackTrace();

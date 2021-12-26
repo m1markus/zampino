@@ -36,32 +36,29 @@ public class SimpleEchoSocket {
     }
 
     public void sendTextMessage(String message) {
-        try {
-            Future<Void> fut;
-            fut = session.getRemote().sendStringByFuture(message);
-            fut.get(2, TimeUnit.SECONDS);
-        } catch (Throwable t) {
-            t.printStackTrace();
+        if (session != null) {
+            try {
+                Future<Void> fut;
+                fut = session.getRemote().sendStringByFuture(message);
+                fut.get(2, TimeUnit.SECONDS);
+            } catch (Throwable t) {
+                t.printStackTrace();
+            }
+        } else {
+            System.out.println("not connected session=null");
         }
-    }
-
-    @OnWebSocketClose
-    public void onClose(int statusCode, String reason) {
-        System.out.printf("Connection closed: %d - %s%n", statusCode, reason);
-        this.session = null;
-        this.closeLatch.countDown(); // trigger latch
     }
 
     @OnWebSocketConnect
     public void onConnect(Session session) {
-        System.out.printf("Got connect: %s%n", session);
+        System.out.printf("onConnect: Got connect: %s%n", session);
         this.session = session;
         connectLatch.countDown();
     }
 
     @OnWebSocketMessage
     public void onMessage(String msg) {
-        System.out.printf("Got msg: %s%n", msg);
+        System.out.printf("onMessage: Got msg: %s%n", msg);
         if (msg.contains("Thanks")) {
             session.close(StatusCode.NORMAL, "I'm done");
         }
@@ -69,8 +66,15 @@ public class SimpleEchoSocket {
 
     @OnWebSocketError
     public void onError(Throwable cause) {
-        System.out.print("WebSocket Error: ");
+        System.out.print("onError: WebSocket Error: ");
         cause.printStackTrace(System.out);
+    }
+
+    @OnWebSocketClose
+    public void onClose(int statusCode, String reason) {
+        System.out.printf("onClose: Connection closed: %d - %s%n", statusCode, reason);
+        this.session = null;
+        this.closeLatch.countDown(); // trigger latch
     }
 }
 
