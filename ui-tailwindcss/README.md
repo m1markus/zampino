@@ -7,11 +7,11 @@ https://tailwindcss.com/
 ### Live editing
 first: run
 ```
-npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch
+npm run css-dev
 ```
 second: in a separate console run
 ```
-live-server
+live-server .
 ```
 
 ## Setup
