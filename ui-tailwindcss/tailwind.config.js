@@ -1,11 +1,17 @@
 module.exports = {
   mode: 'jit',
-  purge: [
-    './**/*.html'
+  content: [
+    "./**/*.html",
   ],
-  darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    backgroundImage: {
+      'world-globus': "url('../img/bg_world_globus_1.jpg')",
+    },
+    extend: {
+      fontSize: {
+        'hero': '15rem',
+      },
+    },
   },
   variants: {
     extend: {},
