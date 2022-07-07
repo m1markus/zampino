@@ -31,7 +31,7 @@
     <quarkus.platform.artifact-id>quarkus-universe-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
 
-    <jetty-version>9.4.12.v20180830</jetty-version>
+    <jetty-version>9.4.48.v20220622</jetty-version>
   </properties>
 
   <dependencyManagement>
